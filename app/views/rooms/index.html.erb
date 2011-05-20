@@ -1,0 +1,14 @@
+<h1> Available Rooms </h1>
+
+<%= link_to 'New room', new_room_path %>
+
+<ul>
+  <% @rooms.each do |room| %>
+    <li> 
+      <%= link_to room.name, room %> 
+      <%= "(Private)" unless room.password.nil? %>
+      &dash;
+      <%= link_to "Delete this room!", room, :method => :delete unless current_user != room.creator%>
+    </li>
+  <% end %>
+</ul>
