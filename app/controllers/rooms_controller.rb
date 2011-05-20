@@ -32,4 +32,14 @@ class RoomsController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    @room = Room.find params[:id]
+    
+    @room.destroy if @room.creator == current_user
+    
+    respond_to do |f|
+      f.html { redirect_to rooms_path }
+    end
+  end
 end

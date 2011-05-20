@@ -8,7 +8,7 @@
       <%= link_to room.name, room %> 
       <%= "(Private)" unless room.password.nil? %>
       &dash;
-      <%= link_to "Delete this room!", room, :method => :delete unless current_user != room.creator%>
+      <%= link_to "Delete this room!", room, :method => :delete, :confirm => "Are you sure?" unless current_user != room.creator%>
     </li>
   <% end %>
 </ul>
