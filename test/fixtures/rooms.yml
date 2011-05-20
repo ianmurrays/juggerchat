@@ -1,13 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  description: MyString
-  password: MyString
-  user_id: 1
-
-two:
-  name: MyString
-  description: MyString
-  password: MyString
-  user_id: 1
+  name: Test room
+  description: Lorem Ipsum

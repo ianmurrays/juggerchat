@@ -1,1 +1,6 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: John Doe
+  provider: facebook
+  uid: 00000

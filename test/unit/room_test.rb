@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class RoomTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "set_creator should set the creator of the room" do
+    room = rooms(:one)
+    user = users(:one)
+    
+    room.set_creator! user
+    assert_equal user.id, room.creator.id
   end
 end
