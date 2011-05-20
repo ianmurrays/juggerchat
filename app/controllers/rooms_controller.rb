@@ -36,6 +36,7 @@ class RoomsController < ApplicationController
   end
   
   def create
+    params[:room][:password] = nil if params[:room][:password] == ''
     @room = Room.new params[:room]
     
     respond_to do |f|
