@@ -18,7 +18,14 @@ $(function(){
   
   juggernaut.subscribe(channel_name, function(data){
     // All data received is handled here
-    add_message_to_chat(data.author + ": " + data.message);
+    if (typeof data.number_users != "undefined") {
+      // We are being notified of how many users are connected
+      $('#num_users').html(data.number_users);
+    }
+    else {
+      // Treat as normal message
+      add_message_to_chat(data.author + ": " + data.message);
+    }
   });
 });
 

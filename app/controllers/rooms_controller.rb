@@ -19,6 +19,9 @@ class RoomsController < ApplicationController
     # Add this user to the list of active ones on the room
     @room.add_user! current_user
     
+    # Notify that we joined, to update number of users connected to chat room
+    Juggernaut.publish(@room.juggername, {:number_users => @room.users.count})
+    
     respond_to do |f|
       f.html
     end
