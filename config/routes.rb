@@ -2,7 +2,11 @@ Juggerchat::Application.routes.draw do
   # Omniauth callbacks
   match '/auth/:provider/callback', :to => 'sessions#create'
   
-  resources :rooms
+  resources :rooms do
+    member do
+      post 'publish'
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

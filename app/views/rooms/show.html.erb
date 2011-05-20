@@ -1,16 +1,18 @@
 <h1> <%= @room.name %> (<span id="num_users"><%= @room.users.count %></span> users) </h1>
 <small> <%= @room.description %> </small>
 
-<div id="messages" style="height: 300px; overflow: auto;">
+<div id="messages" style="height: 300px; width: 500px; overflow: auto;">
   <!-- This is where messages will appear -->
 </div>
 
 <div id="form">
-  <form id="chat_form">
+  <%= form_tag publish_room_path(@room), :id => "chat_form", :remote => true do |f| %>
     <%= current_user.name %> says ...
-    <input type="text" name="message" id="message">
-    <input type="button" name="submit" id="submit_message" value="Submit">
-    <input type="hidden" name="room" id="room" value="<%= @room.id %>">
-    <input type="hidden" name="room" id="password" value="<%= @room.password %>">
-  </form>
+    <%= text_field_tag :message %>
+    
+    <%= hidden_field_tag :room, @room.id %>
+    <%= hidden_field_tag :password, @room.password %>
+    
+    <%= submit_tag "Submit" %>
+  <% end %>
 </div>

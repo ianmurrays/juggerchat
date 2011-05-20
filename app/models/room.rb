@@ -7,6 +7,10 @@ class Room < ActiveRecord::Base
   
   validates :name, :presence => true
   
+  def juggername
+    "chatroom_" + self.id.to_s + "_" + self.password.to_s
+  end
+  
   def set_creator!(user)
     self.users << user
     self.save

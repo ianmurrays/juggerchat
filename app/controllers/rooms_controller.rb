@@ -1,3 +1,5 @@
+require "juggernaut"
+
 class RoomsController < ApplicationController
   before_filter :authorize!
   
@@ -52,6 +54,22 @@ class RoomsController < ApplicationController
     
     respond_to do |f|
       f.html { redirect_to rooms_path }
+    end
+  end
+  
+  def publish
+    @room = Room.find params[:id]
+    
+    # TODO: Check password or something!
+    if params[:message] == ''
+      return # Do nothing, since the message is empty
+    end
+    
+    payload = {:message => params[:message], :author => current_user.name}
+    Juggernaut.publish(@room.juggername, payload)
+    
+    respond_to do |f|
+      f.js
     end
   end
 end

@@ -1,0 +1,7 @@
+// Empty the form field
+$('#chat_form #message').val('');
+
+// Scroll chat div to bottom
+// http://stackoverflow.com/questions/270612/scroll-to-bottom-of-div
+var messages = $('#messages');
+messages[0].scrollTop = messages[0].scrollHeight;

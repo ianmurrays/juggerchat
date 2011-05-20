@@ -18,13 +18,7 @@ $(function(){
   
   juggernaut.subscribe(channel_name, function(data){
     // All data received is handled here
-    console.log('Received data ... ' + data);
-  });
-  
-  // Check submission
-  $('#chat_form').submit(function(){
-    alert('Hola!');
-    return false; // This prevents the form from being actually submited and refreshing the page
+    add_message_to_chat(data.author + ": " + data.message);
   });
 });
 
