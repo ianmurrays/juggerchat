@@ -7,6 +7,14 @@ class SessionsController < ApplicationController
     session[:uid] = user.id
     
     # TODO: Redirect to chat room selection
-    render :text => "OK!"
+    redirect_to rooms_path
+  end
+  
+  def destroy
+    session[:uid] = nil
+    redirect_to login_path
+  end
+  
+  def new
   end
 end

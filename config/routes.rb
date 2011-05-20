@@ -2,6 +2,11 @@ Juggerchat::Application.routes.draw do
   # Omniauth callbacks
   match '/auth/:provider/callback', :to => 'sessions#create'
   
+  controller :sessions do
+    get :login, :action => :new
+    delete :logout, :action => :destroy
+  end
+  
   resources :rooms do
     member do
       post 'publish'
