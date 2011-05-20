@@ -10,6 +10,18 @@ class RoomsController < ApplicationController
     end
   end
   
+  def show
+    @room = Room.find params[:id]
+    # TODO: Check password!
+    
+    # Add this user to the list of active ones on the room
+    @room.add_user! current_user
+    
+    respond_to do |f|
+      f.html
+    end
+  end
+  
   def new
     @room = Room.new
     
