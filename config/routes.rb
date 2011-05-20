@@ -5,6 +5,8 @@ Juggerchat::Application.routes.draw do
   resources :rooms do
     member do
       post 'publish'
+      get 'password'
+      post 'password', :action => :login
     end
   end
   

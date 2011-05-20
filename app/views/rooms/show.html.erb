@@ -6,7 +6,7 @@
 </div>
 
 <div id="form">
-  <%= form_tag publish_room_path(@room), :id => "chat_form", :remote => true do |f| %>
+  <%= form_tag publish_room_path(@room), :id => "chat_form", :remote => true do %>
     <%= current_user.name %> says ...
     <%= text_field_tag :message %>
     

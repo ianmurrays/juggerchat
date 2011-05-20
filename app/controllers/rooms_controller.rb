@@ -14,16 +14,40 @@ class RoomsController < ApplicationController
   
   def show
     @room = Room.find params[:id]
-    # TODO: Check password!
     
-    # Add this user to the list of active ones on the room
-    @room.add_user! current_user
+    unless @room.password.nil? or @room.is_user_in?(current_user)
+      # Redirect him to the "login" page for the room
+      redirect_to password_room_path(@room) and return
+    else
+      # Add this user to the list of active ones on the room
+      @room.add_user! current_user
+    end
     
     # Notify that we joined, to update number of users connected to chat room
     Juggernaut.publish(@room.juggername, {:number_users => @room.users.count})
     
     respond_to do |f|
       f.html
+    end
+  end
+  
+  def password
+    @room = Room.find params[:id]
+    
+    respond_to do |f|
+      f.html
+    end
+  end
+  
+  def login
+    @room = Room.find params[:id]
+    
+    unless @room.password == params[:password]
+      render :action => :password
+    else
+      # Add the user to the list
+      @room.add_user! current_user
+      redirect_to room_path(@room)
     end
   end
   

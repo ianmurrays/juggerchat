@@ -23,4 +23,8 @@ class Room < ActiveRecord::Base
     # TODO: Test this
     self.users << user unless self.users.where(:id => user.id).count > 0
   end
+  
+  def is_user_in?(user)
+    self.users.where(:id => user.id).count > 0
+  end
 end
