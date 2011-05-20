@@ -24,7 +24,9 @@ $(function(){
     }
     else {
       // Treat as normal message
-      add_message_to_chat(data.author + ": " + data.message);
+      var message = data.message.replace(/</, "&lt;");
+      message = message.replace(/>/, "&gt;");
+      add_message_to_chat(data.author + ": " + message);
     }
   });
 });
